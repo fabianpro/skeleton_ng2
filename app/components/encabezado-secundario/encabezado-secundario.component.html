@@ -1,0 +1,35 @@
+<!-- toolbar 3 -->  
+<md-toolbar color="primary"> 
+    <div class="flex-container" fxLayout="row" fxLayoutAlign="space-between center" fxFill>
+        <div fxFlex>
+            <button md-icon-button (click)="paginaSelector()">
+                <md-icon>arrow_back</md-icon>
+            </button>
+        </div>
+        <div fxFlex (click)="toogleInfoDoc=!toogleInfoDoc" class="waves-effect">
+            <div class="flex-container" fxLayout="row" fxLayoutAlign="center center" fxFill>
+                <md-icon style="color:white;">description</md-icon>
+                <span style="color: white;" fxHide.xs>
+                    {{dDatosCompartidosCabecera.numFormulario && dDatosCompartidosCabecera.numFormulario != -1 ? dDatosCompartidosCabecera.numFormulario : 'Numero no asignado'}}
+                </span>
+                <md-icon style="color:white;">{{toogleInfoDoc ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</md-icon>
+            </div>
+        </div>
+        <div fxFlex>
+            <div class="flex-container" fxLayout="row" fxLayoutAlign="end center" fxFill>
+                <span style="transform: rotate(90deg); font-size:16px; color: #717171; font-weight: bold;" *ngIf="dDatosCompartidosCabecera.anio">
+                    {{dDatosCompartidosCabecera.anio}}
+                </span>         
+                <span style="font-weight: bold;color: white;font-size: 35px;">000</span>
+            </div>
+        </div>
+    </div>                    
+</md-toolbar> 
+
+<div style="margin-top: 1px">
+    <md-card class="margin-between-cards" *ngIf="toogleInfoDoc">
+        <md-card-content style="padding: 0px 10px;margin-top: 10px">
+            contenido
+        </md-card-content>
+    </md-card>    
+</div>

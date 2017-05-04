@@ -1,0 +1,67 @@
+<!-- button fixed speed-dial -->
+<div class="fixed-action-btn click-to-toggle" *ngIf="mostrarFabOpciones">
+	<a md-fab class="md-fab-rotate" color="accent" [disabled]="!habilitarFabOpciones">        
+	    <md-icon style="color: white;font-size: 3em;margin-left: -18px;">add</md-icon>       
+	</a>
+	<ul style="list-style:none; padding:0px;">
+	    <li *ngIf="mostrarPdfBtn">
+		    <button md-fab class="btn-floating no-shadown" 
+		    		mdTooltip="PDF" 
+		    		[mdTooltipPosition]="'before'" 
+		    		[disabled]="!habilitarPdfBtn" 
+		    		(click)="lanzarImprimirFormulario($event)">
+	    	    <div fxLayout="column" fxLayoutAlign="center center">
+		    	    <md-icon class="md-floatbutton-whit-icon">picture_as_pdf</md-icon>
+			        <span class="md-floatbutton-whit-text">PDF</span>
+			    </div>
+	        </button>
+	    </li>
+	    <li *ngIf="mostrarPagarBtn">
+	    	<button md-fab class="btn-floating no-shadown" 
+	    			mdTooltip="Pagar" 
+	    			[mdTooltipPosition]="'before'" 
+	    			[disabled]="!habilitarGuardarBtn" 
+	    			(click)="lanzarPagarFormulario($event)">
+	    		<div fxLayout="column" fxLayoutAlign="center center">
+		        	<md-icon class="md-floatbutton-whit-icon">payment</md-icon>
+		        	<span class="md-floatbutton-whit-text">Pagar</span>
+	        	</div>
+	        </button>
+	    </li>
+	    <li *ngIf="mostrarPresentarBtn">
+	    	<button md-fab class="btn-floating no-shadown" 
+	    			mdTooltip="Presentar" [mdTooltipPosition]="'before'" 
+	    			[disabled]="!habilitarPresentarBtn" 
+	    			(click)="lanzarPresentarFormulario($event)">
+	    		<div fxLayout="column" fxLayoutAlign="center center">
+		        	<md-icon class="md-floatbutton-whit-icon">send</md-icon>
+		        	<span class="md-floatbutton-whit-text">Presentar</span>
+	        	</div>
+	        </button>
+	    </li>
+	    <li *ngIf="mostartFirmaBtn">
+	    	<button md-fab class="btn-floating no-shadown" 
+	    			mdTooltip="Firmar" 
+	    			[mdTooltipPosition]="'before'" 
+	    			[disabled]="!habilitarFirmaBtn" 
+	    			(click)="lanzarConsultarFirmantes($event)">
+	           	<div fxLayout="column" fxLayoutAlign="center center">
+		           	<md-icon class="md-floatbutton-whit-icon">mode_edit</md-icon>
+			       	<span class="md-floatbutton-whit-text">Firmar</span>
+			    </div>
+	        </button>
+	    </li>
+	    <li *ngIf="mostrarGuardarBtn">
+	    	<button md-fab class="btn-floating no-shadown" 
+	    			mdTooltip="Guardar" 
+	    			[mdTooltipPosition]="'before'" 
+	    			[disabled]="!habilitarGuardarBtn" 
+	    			(click)="lanzarGuardarActualizarBorrador($event)">
+	           	<div fxLayout="column" fxLayoutAlign="center center">
+		           	<md-icon class="md-floatbutton-whit-icon">save</md-icon>
+			       	<span class="md-floatbutton-whit-text">Guardar</span>
+			    </div>
+	        </button>
+	    </li>
+	</ul>
+</div>

@@ -1,0 +1,314 @@
+<meta charset="UTF-8">
+
+<form id="frmGenerico">
+
+	<!-- card declarante -->
+	<div style="margin-bottom: 2px;">		
+		<div class="flex-container header-seccion-form" fxLayout="row" fxLayoutAlign="space-between center" (click)="cardDeclarante = !cardDeclarante">
+			<span class="title-card">Datos Declarante</span>
+			<a md-icon-button>
+				<md-icon class="button-icon">{{cardDeclarante ? 'keyboard_arrow_up':'keyboard_arrow_down'}}</md-icon>
+			</a>
+		</div>
+
+		<!-- card principal -->
+		<div [hidden]="!cardDeclarante">
+			<md-card class="mat-elevation-z2" style="padding: 0px 24px 24px 24px;">
+				<div fxLayout="column" fxLayout.gt-sm="row" class="flex-container">
+					<!-- formulario -->
+					<div fxFlex class="flex-container">
+						<br>
+						<!-- cas5, cas6 -->
+						<div class="flex-container" fxLayout="row">
+							<div fxFlex class="flex-container" fxFlex.xs="80%" fxFlex.gt-xs="80%" fxFlex.md="80%" fxFlex.lg="90%">
+								<label for="txtCas5">5. Identificación Tributaria*</label>
+					  			<input type="text" 
+					  			id="txtCas5" 
+					  			name="txtCas5" 
+					  			class="inputs-form" 
+					  			disabled
+					  			[(ngModel)]="modelo.doc.cab.cs_id_5">
+							</div>
+							<span class="separator-inputs-form"></span>
+							<div fxFlex class="flex-container">
+								<label for="txtCas6">6. DV*</label>
+					  			<input type="text" 
+					  			id="txtCas6" 
+					  			name="txtCas6" 
+					  			class="inputs-form" 
+					  			disabled
+					  			[(ngModel)]="modelo.doc.cab.cs_id_6">	
+							</div>					
+						</div>
+
+						<br>
+
+						<!-- cas7, cas8 -->
+						<div class="flex-container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
+							<div fxFlex class="flex-container">
+								<label for="txtCas7">7. Primer apellido*</label>
+					  			<input type="text" 
+					  			id="txtCas7" 
+					  			name="txtCas7" 
+					  			class="inputs-form" 
+					  			disabled
+					  			[(ngModel)]="modelo.doc.cab.cs_id_7">							
+							</div>
+							<span class="separator-inputs-form"></span>
+							<div fxFlex class="flex-container">
+								<label for="txtCas8">8. Segundo apellido</label>
+					  			<input type="text" 
+					  			id="txtCas8" 
+					  			name="txtCas8" 
+					  			class="inputs-form" 
+					  			disabled
+					  			[(ngModel)]="modelo.doc.cab.cs_id_8">	
+							</div>	
+						</div>		
+
+						<br>	
+
+						<!-- cas9, cas10 -->
+						<div class="flex-container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
+							<div fxFlex class="flex-container">
+								<label for="txtCas9">9. Primer nombre*</label>
+					  			<input type="text" 
+					  			id="txtCas9" 
+					  			name="txtCas9" 
+					  			class="inputs-form" 
+					  			disabled
+					  			[(ngModel)]="modelo.doc.cab.cs_id_9">							
+							</div>
+							<span class="separator-inputs-form"></span>
+							<div fxFlex class="flex-container">
+								<label for="txtCas10">10. Otros nombres</label>
+					  			<input type="text" 
+					  			id="txtCas10" 
+					  			name="txtCas10" 
+					  			class="inputs-form" 
+					  			disabled
+					  			[(ngModel)]="modelo.doc.cab.cs_id_10">	
+							</div>	
+						</div>		
+
+						<br>	
+
+						<!-- cas11, cas23 -->
+						<div class="flex-container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
+							<div fxFlex class="flex-container">
+								<label for="txtCas11">11. Razón Social</label>
+					  			<input type="text" 
+					  			id="txtCas11" 
+					  			name="txtCas11" 
+					  			class="inputs-form" 
+					  			disabled
+					  			[(ngModel)]="modelo.doc.cab.cs_id_11">							
+							</div>						
+						</div>
+
+						<br>	
+
+						<!-- cas24, cas25 -->
+						<div class="flex-container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
+							<div fxFlex class="flex-container">
+								<div fxLayout="row" fxLayoutAlign="start center">
+									24. Es corrección &nbsp;&nbsp;
+									<md-slide-toggle id="slCas24" 
+										color="accent"
+										disabled																				
+										[ngModelOptions]="{standalone: true}" 										
+										[(ngModel)]="modelo.doc.cuerpo.cs_id_24">
+									</md-slide-toggle>				
+								</div>
+							</div>							
+							<span class="separator-inputs-form"></span>						
+							<div fxFlex class="flex-container">
+								<label for="txtCas25">25. Nro. formulario anterior</label>
+					  			<input type="text" 
+					  			id="txtCas25" 
+					  			name="txtCas25" 
+					  			class="inputs-form"
+					  			disabled					  			
+					  			[(ngModel)]="modelo.doc.cuerpo.cs_id_25">				
+							</div>
+						</div>	
+					</div>
+
+					<!-- ayuda -->
+					<div fxFlex class="flex-container" fxHide fxShow.md fxShow.gt-md fxShow.lg fxShow.gt-lg fxShow.xl style="margin-left: 20px;">
+						<div class="help-form">
+							<h3><span class="pipe-style">|</span>Ayuda</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						</div>
+					</div>
+
+				</div>
+								  		
+			</md-card>
+		</div>
+	</div>
+	<!-- fin card declarante -->
+
+	<!-- card combustible fósil - Gravados -->
+	<div style="margin-bottom: 2px;">		
+		<div class="flex-container header-seccion-form" fxLayout="row" fxLayoutAlign="space-between center" (click)="cardCasillas = !cardCasillas">
+			<span class="title-card">Ejemplo de Casillas</span>
+			<a md-icon-button>
+				<md-icon class="button-icon">{{cardCasillas ? 'keyboard_arrow_up':'keyboard_arrow_down'}}</md-icon>
+			</a>
+		</div>
+
+		<!-- card principal -->
+		<div [hidden]="!cardCasillas">
+			<md-card class="mat-elevation-z2" style="padding: 0px 24px 24px 24px;">
+				<div fxLayout="column" fxLayout.gt-sm="row" class="flex-container">
+					<!-- formulario -->
+					<div fxFlex class="flex-container">
+						<br>
+						<!-- cas25, cas32, cas38 -->
+						<div class="flex-container" fxLayout="row">
+							<div fxFlex class="flex-container" fxFlex.xs="30%" fxFlex.gt-xs="30%" fxFlex.md="30%" fxFlex.lg="30%" fxLayoutAlign="start center">
+								<span>Gas Natural</span>						
+							</div>
+							<span class="separator-inputs-form"></span>
+							<div fxFlex class="flex-container">
+								<div fxLayout="column" class="flex-container">
+									<div fxFlex class="flex-container">
+										<label for="txtCas26">26. Casilla</label>
+							  			<input type="text" 
+							  			id="txtCas26" 
+							  			name="txtCas26" 
+							  			class="inputs-form number-value"
+							  			formatoMoneda							  									  
+							  			(change)="operacionCs38()"							  			
+							  			[(ngModel)]="modelo.doc.cuerpo.cs_id_26"							  			
+							  			(keyup.enter)="processKeyUp($event, focusable32)">	
+						  			</div>						  
+						  			<span class="separator-inputs-form"></span>
+						  			<div fxFlex class="flex-container">
+										<label for="txtCas32">32. Casilla</label>
+							  			<input 	type="text" 
+									  	id="txtCas32" 
+									  	name="txtCas32" 
+									  	class="inputs-form number-value"
+									  	formatoMoneda							 
+									  	#focusable32 
+										(change)="operacionCs38()"
+									  	[(ngModel)]="modelo.doc.cuerpo.cs_id_32"									
+									  	(keyup.enter)="processKeyUp($event, focusable27)">	
+						  			</div>
+						  			<span class="separator-inputs-form"></span>
+						  			<div fxFlex class="flex-container">
+										<label for="txtCas38">38. Casilla</label>
+							  			<input 	type="text" 
+									  	id="txtCas38"
+									  	name="txtCas38" 
+									  	class="inputs-form number-value"
+									  	disabled 									  	
+									  	#focusable38 
+									  	[ngModel]="modelo.doc.cuerpo.cs_id_38|formateoValor">	
+						  			</div>
+					  			</div>
+							</div>					
+						</div>
+
+						<br>
+
+						<md-divider></md-divider>
+
+						<br>						
+
+						<!-- cas27, cas33, cas39 -->
+						<div class="flex-container" fxLayout="row">
+							<div fxFlex class="flex-container" fxFlex.xs="30%" fxFlex.gt-xs="30%" fxFlex.md="30%" fxFlex.lg="30%" fxLayoutAlign="start center">
+								<span>Gas licuado de petróleo</span>						
+							</div>
+							<span class="separator-inputs-form"></span>
+							<div fxFlex class="flex-container">
+								<div fxLayout="column" class="flex-container">
+									<div fxFlex class="flex-container">
+										<label for="txtCas27">27. Casilla</label>
+							  			<input type="text" 
+									  	id="txtCas27" 
+									  	name="txtCas27" 
+									  	class="inputs-form number-value"
+									  	formatoMoneda							 
+									  	#focusable27 
+									  	(change)="operacionCs39()"
+									  	[(ngModel)]="modelo.doc.cuerpo.cs_id_27"
+									  	(keyup.enter)="processKeyUp($event, focusable33)">	
+						  			</div>
+						  			<span class="separator-inputs-form"></span>
+						  			<div fxFlex class="flex-container">
+										<label for="txtCas33">33. Casilla</label>
+							  			<input type="text" 
+									  	id="txtCas33" 
+									  	name="txtCas33" 
+									  	class="inputs-form number-value"
+									  	formatoMoneda							  		
+									  	#focusable33
+									  	(change)="operacionCs39()"
+									  	[(ngModel)]="modelo.doc.cuerpo.cs_id_33"
+									  	(keyup.enter)="processKeyUp($event, focusable28)">	
+						  			</div>
+						  			<span class="separator-inputs-form"></span>
+						  			<div fxFlex class="flex-container">
+										<label for="txtCas39">39. Casilla</label>
+							  			<input type="text" 
+									  	id="txtCas39" 
+									  	name="txtCas39" 
+									  	class="inputs-form number-value"
+									  	disabled 									  	
+									  	#focusable39 
+									  	[ngModel]="modelo.doc.cuerpo.cs_id_39|formateoValor">	
+						  			</div>
+					  			</div>
+							</div>					
+						</div>
+					</div>
+
+					<!-- ayuda -->
+					<div fxFlex class="flex-container" fxHide fxShow.md fxShow.gt-md fxShow.lg fxShow.gt-lg fxShow.xl style="margin-left: 20px;">
+						<div class="help-form">
+							<h3><span class="pipe-style">|</span>Ayuda</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						</div>
+					</div>
+
+				</div>
+								  		
+			</md-card>
+		</div>
+	</div>
+	<!-- fin card combustible fósil - Gravados  -->
+
+
+	<br><br><br>
+	
+</form>
+
+<!-- button fixed speed-dial -->
+<speed-dial-component 
+	[mostrarFabOpciones]="mostrarFabOpciones"
+	[habilitarFabOpciones]="habilitarFabOpciones"
+	[mostrarGuardarBtn]="mostrarGuardarBtn"
+    [mostartFirmaBtn]="mostartFirmaBtn"
+    [mostrarPresentarBtn]="mostrarPresentarBtn"
+    [mostrarPagarBtn]="mostrarPagarBtn"
+    [mostrarPdfBtn]="mostrarPdfBtn"
+    (imprimirFormulario)="imprimirFormulario()"  
+    (pagarFormulario)="pagarFormulario()"
+    (presentarFormulario)="presentarFormulario()"
+    (consultarFirmantes)="consultarFirmantes()"
+    (guardarActualizarBorrador)="guardarActualizarBorrador()">
+</speed-dial-component>

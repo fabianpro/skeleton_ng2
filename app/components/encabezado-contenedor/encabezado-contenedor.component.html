@@ -1,0 +1,130 @@
+<!-- header -->
+<header>
+    <md-toolbar color="primary">
+        <!-- toolbar 1 -->
+        <div class="flex-container" fxLayout="row" fxLayoutAlign="space-between center" fxFill>
+            <div class="flex-container" fxFlex>
+                <img class="flex-container" style="width: 140px;" src="./node_modules/@dian-cmp/estilos/assets/images/png/logoDianAltaResolucionWeb.png">               
+            </div>
+            <span fxHide.xs style="color: white; font-size: 2em; margin: 0px 10px;">Formularios</span>      
+            <!-- content right -->
+            
+            <!-- previene que el titulo del primer toolbar se acople al lado derecho mientras carga los datos -->
+            <div fxFlex class="flex-container" fxLayoutAlign="end center" *ngIf="precargaCabecera">
+                <md-progress-circle
+                    style="width: 30px;margin-right: 5px;"
+                    [color]="'accent'"
+                    [mode]="'indeterminate'">
+                </md-progress-circle>
+            </div>
+
+            <div fxFlex class="flex-container" fxLayout="column" fxLayoutAlign="center end" *ngIf="!precargaCabecera">
+                <div class="flex-item letra" fxFlex style="color:black;">U.A.E DIAN</div>
+                <div class="flex-item letra" fxFlex *ngIf="datosRespuesta.nombreOrganizacion">
+                    {{datosRespuesta.nombreOrganizacion}}
+                </div>
+                <div class="flex-item letra" fxFlex *ngIf="datosRespuesta.nombreUsuario">
+                    {{datosRespuesta.nombreUsuario}}
+                </div>                
+                <div class="flex-item letra" fxFlex *ngIf="datosRespuesta.fechaConsulta">
+                    {{datosRespuesta.fechaConsulta | date: 'mediumDate'}} / {{horaReal ? horaReal : datosRespuesta.fechaConsulta | date:'HH:mm:ss'}}
+                </div>
+            </div>
+        </div>
+        <!-- end toolbar 1 -->        
+    </md-toolbar>
+
+    <!-- toolbar 2 -->
+    <md-toolbar color="primary" [class.fixed-toolbar]="navIsFixed">
+        <div class="flex-container" fxLayout="row" fxLayoutAlign="space-between center" fxFill>
+            <div>
+                <button md-icon-button (click)="sideNavDiligenciamiento.toggle()">
+                    <md-icon>menu</md-icon>
+                </button>               
+            </div>
+            <div fxHide.xs>
+                <span style="color:white; font-size:1.5em;margin-left: 10px;">Nombre Formulario</span>
+            </div>
+            <div fxFlex></div>
+            <div fxFlex>
+                <!-- content right buttons -->  
+                <div class="flex-container" fxLayout="row" fxLayoutAlign="end center" fxFill>
+                    <button md-icon-button (click)="hrefButton('/WebDashboard/DefDashboard.faces')">
+                        <md-icon>home</md-icon>
+                    </button>
+                    <button md-icon-button (click)="hrefButton('/WebGestionexpediente/DefBandejaExpedientes.faces')">
+                        <md-icon>folder</md-icon>
+                    </button>
+                    <button md-icon-button (click)="hrefButton('/WebArquitectura/DefBandejaTareas.faces?modoPresentacionSeleccionBO=dialogo')">
+                        <md-icon>notifications</md-icon>
+                    </button>
+                    <button md-icon-button (click)="hrefButton('/WebArquitectura/DefBandejaTareasNeg.faces?modoPresentacionSeleccionBO=dialogo')">
+                        <md-icon>date_range</md-icon>
+                    </button>
+                    <button md-icon-button color="warn" (click)="logoutApp();">
+                        <md-icon>power_settings_new</md-icon>
+                    </button>
+                </div>                  
+            </div>
+        </div>  
+    </md-toolbar> 
+    <!-- end toolbar 2 -->        
+
+</header>
+<!-- end header -->
+
+<!-- sidenav  style="height: 100vh" -->
+<md-sidenav-container style="height: 87vh;">
+    <md-sidenav #sideNavDiligenciamiento style="max-width: 227.91px;">
+        <md-card class="menu-user">
+            <div class="flex-container" fxLayout="column" fxLayoutAlign="center center">
+                <img md-card-md-image src="http://imageog.flaticon.com/icons/png/512/61/61205.png" style="height:100px;min-height:100px; margin:0 auto;width:100px;">
+                <br>
+                <md-card-content style="padding: 0px 5px 0px 5px;">
+                    <div fxLayout="column" fxLayoutAlign="center center" fxFlex style="width: 210px;max-width: 210px;">
+                        <div class="truncate-text" style="width: 210px;max-width: 210px;">{{nombreUsuario}}</div>
+                        <div class="truncate-text" style="width: 210px;max-width: 210px;">{{nombreOrganizacion|lowercase}}</div>
+                    </div>
+                </md-card-content>
+            </div>
+        </md-card>
+        <md-list dense style="overflow-y: scroll; height: 70%;">
+            <md-list-item class="waves-effect" (click)="hrefButton('/WebDashboard/DefDashboard.faces')">                  
+                <md-icon md-list-icon>menu</md-icon>
+                <label class="sidenav-menu-item">Menu general</label>                           
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item class="waves-effect" (click)="hrefButton('/WebDiligenciamiento/DefDiligenciamientoFormularios.faces')">
+                <md-icon md-list-icon>touch_app</md-icon>
+                <label class="sidenav-menu-item">Selector de formularios</label>                
+            </md-list-item>
+            <md-list-item class="waves-effect" (click)="hrefButton('/WebDashboard/DefDashboard.faces')">
+                <md-icon md-list-icon>dashboard</md-icon>
+                <label class="sidenav-menu-item">Dashboard</label>              
+            </md-list-item>
+            <!--<md-divider></md-divider>           
+            <md-list-item class="waves-effect" *ngIf="hiddenGuardarSideNav">  
+                <md-icon md-list-icon>save</md-icon>
+                <label class="sidenav-menu-item">Guardar formulario</label>                          
+            </md-list-item>
+            <md-list-item class="waves-effect" *ngIf="hiddenFirmarSideNav">
+                <md-icon md-list-icon>edit</md-icon>
+                <label class="sidenav-menu-item">Firmar formulario</label>              
+            </md-list-item>
+            <md-list-item class="waves-effect" *ngIf="hiddenPresentarSideNav">
+                <md-icon md-list-icon>label</md-icon>
+                <label class="sidenav-menu-item">Presentar formulario</label>               
+            </md-list-item>-->
+            <md-list-item style="height: 74%;max-height: 74%;"></md-list-item>
+            <md-list-item class="waves-effect">
+                <md-icon md-list-icon>exit_to_app</md-icon>
+                <label class="sidenav-menu-item" style="color:red;">Cerrar Sesi&oacute;n</label>                
+            </md-list-item>                  
+        </md-list>                  
+    </md-sidenav>
+        
+    <!-- content -->
+    <div class="container-cards" style="height: 87vh;overflow:auto;">
+        <router-outlet></router-outlet>
+    </div>      
+</md-sidenav-container>

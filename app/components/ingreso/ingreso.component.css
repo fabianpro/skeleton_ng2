@@ -1,0 +1,37 @@
+.letra-en-botones {
+	font-size: 1.3em;
+	color: #ff8a65;
+}
+
+.botones-sin-fondo {
+    height: 40px;
+    width: 40px;
+    border: 1px solid black;   
+}
+
+.leyends {
+	text-align: center;
+	font-size: 12px;
+	margin-top: 5px;
+}
+
+.letras-informacion {
+	font-size: 13px
+}
+
+.selects-personalizados {
+	min-width: 80px;	
+	border-radius: 20px;
+	padding: 4px;
+	border: 1px solid black;
+	color: #ff8a65;
+	background-color: #c7c3c3;
+	text-align-last: center;
+	font-size: 16px;
+	outline: none;
+	/*font-weight: bold;*/
+}
+
+.espacio-entre-botones {
+	margin-left: 5px;
+}

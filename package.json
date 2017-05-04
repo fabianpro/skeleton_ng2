@@ -1,0 +1,67 @@
+{
+  "name": "DianFrontEnd",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+    "lite": "lite-server",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "DinstallCore": "npm uninstall @dian/core --save && npm install @dian/core --save",
+    "DinstallEstilos": "npm uninstall @dian-cmp/estilos --save && npm install @dian-cmp/estilos --save",
+    "DinstallNotificaciones": "npm uninstall @dian-cmp/notificaciones --save && npm install @dian-cmp/notificaciones --save",
+    "DinstallApiFirma": "npm uninstall @dian/api-firma --save && npm install @dian/api-firma --save",
+    "DinstallApiFormulario": "npm uninstall @dian/api-formulario --save && npm install @dian/api-formulario --save",
+    "DinstallApiIdentidad": "npm uninstall @dian/api-identidad --save && npm install @dian/api-identidad --save",
+    "DinstallApiRut": "npm uninstall @dian/api-rut --save && npm install @dian/api-rut --save",
+    "DinstallAll": "npm run DinstallEstilos && npm run DinstallNotificaciones && npm run DinstallCore && npm run DinstallApiFirma && npm run DinstallApiFormulario && npm run DinstallApiIdentidad && npm run DinstallApiRut"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/angular/angular.io/blob/master/LICENSE"
+    }
+  ],
+  "dependencies": {
+    "@angular/common": "~2.4.0",
+    "@angular/compiler": "~2.4.0",
+    "@angular/core": "~2.4.0",
+    "@angular/flex-layout": "^2.0.0-rc.1",
+    "@angular/forms": "~2.4.0",
+    "@angular/http": "~2.4.0",
+    "@angular/material": "2.0.0-beta.2",
+    "@angular/platform-browser": "~2.4.0",
+    "@angular/platform-browser-dynamic": "~2.4.0",
+    "@angular/router": "~3.4.0",
+    "@angular/upgrade": "~2.4.0",
+    "@dian-cmp/estilos": "^1.0.0",
+    "@dian-cmp/notificaciones": "^1.0.0",
+    "@dian/api-firma": "^1.0.0",
+    "@dian/api-formulario": "^1.0.0",
+    "@dian/api-identidad": "^1.0.0",
+    "@dian/api-rut": "^1.0.0",
+    "@dian/core": "^1.0.0",
+    "@types/hammerjs": "^2.0.34",
+    "angular-in-memory-web-api": "~0.2.4",
+    "angular2-cookie": "^1.2.6",
+    "angular2-logger": "^0.5.1",
+    "angular2-material-datepicker": "^0.5.0",
+    "bootstrap": "^3.3.7",
+    "core-js": "^2.4.1",
+    "file-saver": "^1.3.3",
+    "hammerjs": "^2.0.8",
+    "jquery": "^3.1.1",
+    "materialize-css": "^0.98.0",
+    "reflect-metadata": "^0.1.8",
+    "roboto-fontface": "^0.7.0",
+    "rxjs": "5.0.1",
+    "systemjs": "0.19.40",
+    "zone.js": "^0.7.4"
+  },
+  "devDependencies": {
+    "@types/core-js": "0.9.34",
+    "@types/node": "^6.0.45",
+    "concurrently": "^3.0.0",
+    "lite-server": "^2.2.2",
+    "typescript": "^2.0.3"
+  }
+}

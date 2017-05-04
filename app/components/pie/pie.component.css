@@ -1,0 +1,19 @@
+md-toolbar.pie {
+	background-color: #c0c0c0;
+	top:auto;
+	bottom:0px;
+	left:auto;
+	position:fixed;
+}
+
+.app-input-dian-pie {
+  font-size: 28px;
+  color: #515151;
+  text-align:right;
+  padding-left: 10px;
+}
+
+
+.app-toolbar-filler {
+  flex: 1 1 auto;
+}

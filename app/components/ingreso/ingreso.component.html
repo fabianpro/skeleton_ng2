@@ -1,0 +1,250 @@
+<meta charset="utf-8">
+
+<!-- title toolbar -->
+<md-toolbar color="primary">
+	<div class="flex-container" fxLayout="row" fxLayoutAlign="start center" fxFill>
+		<button md-icon-button routerLink="/selector">
+			<md-icon>navigate_before</md-icon>
+		</button>					
+		<span style="color:white;" class="truncate-text">435 - Impuesto al Carbono</span> 			
+	</div> 	
+</md-toolbar>
+
+<div style="padding: 5px">
+
+	<!-- flex contenedor en diligenciamiento -->
+	<div fxLayout="column" fxLayoutAlign="space-around stretch" class="flex-container" fxFlex>
+		<div class="flex-item" fxFlex style="margin: 5px;">
+			<!-- toolbar proceso diligenciamiento -->
+			<div class="flex-container header-seccion-form" 
+				fxLayout="row" 
+				fxLayoutAlign="space-between center" 
+				(click)="mostrarDocumentosEnProceso = !mostrarDocumentosEnProceso"
+				*ngIf="arrDocumentosDiligenciamiento.infoFormularios.length">
+				<span class="title-card">En Proceso diligenciamiento</span>
+				<a md-icon-button>
+					<md-icon class="button-icon">{{mostrarDocumentosEnProceso ? 'keyboard_arrow_up':'keyboard_arrow_down'}}</md-icon>
+				</a>
+			</div>		
+			<!-- end toolbar proceso diligenciamiento -->			
+			
+			<!-- flex container en proceso -->
+			<div [hidden]="!mostrarDocumentosEnProceso" *ngIf="arrDocumentosDiligenciamiento.infoFormularios.length">
+				<div fxLayout="row" fxLayoutAlign="space-around stretch" class="flex-container" fxFlex style="overflow:auto">
+					<div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutWrap="wrap" fxFlex>
+						<md-card style="padding: 0px;background-color: #ece9e9;margin:5px;" fxFlex fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="48" fxFlex.lg="30" fxFlex.xl="30" *ngFor="let item of arrDocumentosDiligenciamiento.infoFormularios">
+							<div fxLayout="row" fxLayoutAlign="space-between center">
+								<div fxFlex="70%" fxLayout="row" fxLayoutAlign="space-between start" fxFlexAlign="stretch" style="background-color: #c7c3c3;padding:10px;">
+									<div fxLayout="column" fxLayoutAlign="center center" class="espacio-entre-botones">
+										<button md-icon-button class="waves-effect botones-sin-fondo" (click)="imprimirFormulario(item.identificador.id)">
+											<md-icon class="md-24" color="accent">picture_as_pdf</md-icon>
+										</button>
+										<span class="leyends">Descargar</span>
+									</div>									
+									<div fxLayout="column" fxLayoutAlign="center center" class="espacio-entre-botones">
+										<button md-icon-button class="waves-effect botones-sin-fondo" (click)="editarFormulario(item)">
+											<md-icon class="md-24" color="accent">edit</md-icon>
+										</button>	
+										<span class="leyends">Editar</span>
+									</div>									
+									<div fxLayout="column" fxLayoutAlign="center center">
+										<button md-icon-button class="waves-effect botones-sin-fondo" (click)="editarFormulario(item)">
+											<md-icon class="md-24" color="accent">delete</md-icon>
+										</button>
+										<span class="leyends">Desautorizar<br>firmas</span>				
+									</div>									
+									<div fxLayout="column" fxLayoutAlign="center center">
+										<button md-icon-button class="waves-effect botones-sin-fondo" (click)="editarFormulario(item)">
+											<md-icon class="md-24" color="accent">vpn_key</md-icon>
+										</button>
+										<span class="leyends">Firmar/<br>Presentar</span>
+									</div>								
+								</div>
+								<div fxFlex>
+									<div fxFlex fxLayout="column" fxLayoutAlign="space-between end" style="padding: 10px;">						
+										<span class="letras-informacion"><b>{{item.identificador.id}}</b></span>
+										<span class="letras-informacion"><b>{{item.anio}} {{item.periodicidad}} - {{item.periodo}}</b></span>									
+										<span style="margin-top: 8px;" class="letras-informacion">Estado: {{item.atributos.docAtributos.enProcesoFirmas ? 'Firmando' : 'Edición'}}</span>
+									</div>								
+								</div>	
+							</div>
+						</md-card>					
+					</div>		
+				</div>					
+			</div>	
+
+			<!-- toolbar nuevo borrador -->
+			<div class="flex-container header-seccion-form" 
+				fxLayout="row" 
+				fxLayoutAlign="space-between center" 				
+				(click)="mostrarDocumentosEnBorrador = !mostrarDocumentosEnBorrador"
+				*ngIf="!arrDocumentosDiligenciamiento.infoFormularios.length">
+				<span class="title-card">Nuevo borrador</span>
+				<a md-icon-button>
+					<md-icon class="button-icon">{{mostrarDocumentosEnBorrador ? 'keyboard_arrow_up':'keyboard_arrow_down'}}</md-icon>
+				</a>
+			</div>				
+			<!-- end toolbar nuevo borrador -->
+
+			<!-- flex container en borrador -->
+			<div [hidden]="!mostrarDocumentosEnBorrador" *ngIf="!arrDocumentosDiligenciamiento.infoFormularios.length">
+				<div fxLayout="row">
+					<md-card style="padding: 0px;background-color: #ece9e9;" fxFlex fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="48" fxFlex.lg="30" fxFlex.xl="30">
+						<div fxLayout="row" fxLayoutAlign="space-between center">
+							<div fxFlex fxFlex="70%" fxLayout="column" fxFlexAlign="stretch" style="background-color: #c7c3c3;padding:10px;overflow:auto;">
+								<!--<span style="padding: 5px 10px 12px 10px;font-weight: bold;">Elija a continuación</span>								-->
+								<div fxFlex fxLayout="row" fxLayoutAlign="space-around start" fxFill><!-- fxLayout.xs="column" -->
+									<!--<div fxLayout="column" fxLayoutAlign="center center" class="espacio-entre-botones">
+										<div fxLayout="column" fxLayoutAlign="center center" class="espacio-entre-botones">
+											<button md-icon-button 
+													class="waves-effect botones-sin-fondo" 
+													[ngClass]="{'disabled-boton-sin-fondo':periodicidadDeshabilitada}" 
+													[disabled]="periodicidadDeshabilitada"
+													[mdMenuTriggerFor]="menuPeriodicidad">
+												<md-icon class="md-24" color="accent">view_carousel</md-icon>
+											</button>
+											<md-menu #menuPeriodicidad="mdMenu">
+												<button md-menu-item *ngFor="let item of periodicidad" (click)="periodicidadSelecionada = item">
+													<span>{{item.viewValue}}</span>
+												</button>												
+											</md-menu>
+											<span class="leyends">Periodicidad <br>
+												<span style="font-weight: bold;">{{periodicidadSelecionada ? periodicidadSelecionada.viewValue : ''}}</span>
+											</span>
+										</div>												
+									</div>-->	
+									<div fxLayout="column" fxLayoutAlign="center center" class="espacio-entre-botones">
+										<div fxLayout="column" fxLayoutAlign="center center" class="espacio-entre-botones">
+											<button md-icon-button class="waves-effect botones-sin-fondo" [mdMenuTriggerFor]="menuAnio">
+												<md-icon class="md-24" color="accent">today</md-icon>
+											</button>
+											<md-menu #menuAnio="mdMenu">
+												<button md-menu-item *ngFor="let item of anio" (click)="anioSeleccionado = item">
+													<span>{{item.value}}</span>
+												</button>												
+											</md-menu>
+											<span class="leyends">Año <br>
+												<span style="font-weight: bold;">{{anioSeleccionado ? anioSeleccionado.value : ''}}</span>
+											</span>
+										</div>											
+									</div>	
+									<div fxLayout="column" fxLayoutAlign="center center" class="espacio-entre-botones">
+										<div fxLayout="column" fxLayoutAlign="center center" class="espacio-entre-botones">
+											<button md-icon-button class="waves-effect botones-sin-fondo" [mdMenuTriggerFor]="menuPeriodo">
+												<md-icon class="md-24" color="accent">date_range</md-icon>
+											</button>
+											<md-menu #menuPeriodo="mdMenu">
+												<button md-menu-item *ngFor="let item of periodo" (click)="periodoSeleccionado = item">
+													<span>{{item.value}}) {{item.viewValue}}</span>
+												</button>												
+											</md-menu>
+											<span class="leyends">Periodo <br>
+												<span style="font-weight: bold;">{{periodoSeleccionado ? periodoSeleccionado.value + ' ' + periodoSeleccionado.viewValue : ''}}</span>
+											</span>
+										</div>											
+									</div>												
+								</div>								
+							</div>								
+							<div fxFlex>
+								<div fxFlex fxLayout="column" fxLayoutAlign="center center" style="padding: 10px;">
+									<span>Nuevo <span fxHide.xs>Borrador</span></span>
+									<button md-icon-button 
+										class="waves-effect botones-sin-fondo" 
+										[disabled]="!anioSeleccionado || !periodoSeleccionado"	
+										[ngClass]="{'waves-effect':anioSeleccionado && periodoSeleccionado}"
+										[ngStyle]="{'background-color':!anioSeleccionado || !periodoSeleccionado ? '#c7c3c3' : ''}"									
+										(click)="crearNuevoBorrador()">
+										<md-icon class="md-24" [color]="anioSeleccionado && periodoSeleccionado ? 'accent' : 'gray'">arrow_forward</md-icon>
+									</button>									
+									<span class="leyends">Crear</span>
+								</div>								
+							</div>								
+						</div>
+					</md-card>											
+				</div>			
+			</div>	
+
+			<!-- toolbar consulta presentados -->
+			<div class="flex-container header-seccion-form" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="arrDocumentosPresentados.infoFormularios.length">
+				<span class="title-card" fxFlex>Consulta - 2017 - Presentados</span>
+				<button md-icon-button [mdMenuTriggerFor]="menuFiltro">
+					<md-icon class="md-24" color="gray">filter_list</md-icon>
+				</button>
+				<md-menu #menuFiltro="mdMenu">
+					<button md-menu-item *ngFor="let item of anio" (click)="consultarFormulariosPorAnio(item.value)">
+						<span>{{item.value}}</span>
+					</button>											
+				</md-menu>
+			</div>		
+			<!-- end toolbar consulta presentados -->
+		</div>
+	</div>
+	<!-- end flex contenedor en diligenciamiento -->
+
+	<!-- flex contenedor presentados -->
+	<div fxLayout="row" fxLayoutAlign="space-around stretch" class="flex-container" fxFlex style="overflow:auto" *ngIf="arrDocumentosPresentados.infoFormularios.length">
+		<div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutWrap="wrap" fxFlex>
+			<md-card style="padding: 0px;background-color: #ece9e9;margin:5px;" fxFlex fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="48" fxFlex.lg="30" fxFlex.xl="30"	*ngFor="let item of arrDocumentosPresentados.infoFormularios">
+				<div fxLayout="row" fxLayoutAlign="space-between center">
+					<div fxFlex="70%" fxLayout="row" fxLayoutAlign="space-between start" fxFlexAlign="stretch" style="background-color: #c7c3c3;padding:10px;">
+						<div fxLayout="column" fxLayoutAlign="center center" class="espacio-entre-botones">
+							<button md-icon-button class="waves-effect botones-sin-fondo" (click)="imprimirFormulario(item.identificador.id)">
+								<md-icon class="md-24" color="accent">picture_as_pdf</md-icon>
+							</button>
+							<span class="leyends">Descargar</span>
+						</div>								
+						<div fxLayout="column" fxLayoutAlign="center center" class="espacio-entre-botones">
+							<button md-icon-button class="waves-effect botones-sin-fondo" (click)="corregirFormulario(item)">
+								<md-icon class="md-24" color="accent">rate_review</md-icon>
+							</button>	
+							<span class="leyends">Corregir</span>
+						</div>								
+						<div fxLayout="column" fxLayoutAlign="center center" class="espacio-entre-botones">
+							<button md-icon-button class="waves-effect botones-sin-fondo" (click)="pagarFormulario(item.identificador.id, item.anio)">
+								<md-icon class="md-24" color="accent">attach_money</md-icon>
+							</button>
+							<span class="leyends">Pagar</span>				
+						</div>
+						<div fxLayout="column" fxLayoutAlign="center center" class="espacio-entre-botones">
+							<button md-icon-button class="botones-sin-fondo" [mdMenuTriggerFor]="menuOtros" disabled style="background-color: #c7c3c3;">
+								<md-icon class="md-24" color="gray">more_vert</md-icon>
+							</button>
+							<md-menu #menuOtros="mdMenu">
+								<button md-menu-item disabled>
+									<md-icon>dialpad</md-icon>
+									<span>Redial</span>
+								</button>								
+							</md-menu>
+							<span class="leyends">Otros</span>
+						</div>		
+					</div>
+					<div fxFlex>
+						<div fxFlex fxLayout="column" fxLayoutAlign="space-between end" style="padding: 10px;">	
+							<span class="letras-informacion"><b>{{item.identificador.id}}</b></span>
+							<span class="letras-informacion"><b>{{item.anio}} {{item.periodicidad}} - {{item.periodo}}</b></span>									
+							<span style="margin-top: 8px;" class="letras-informacion">Presentado: {{item.fecPresentacion | date:'d MMM y'}}</span>					
+						</div>								
+					</div>	
+				</div>
+			</md-card>					
+		</div>		
+	</div>	
+	<!-- end flex contenedor presentados -->		
+
+	<!-- porcentage -->
+	<!--<div fxLayout="row" fxLayoutAlign="center center" style="position: relative;margin-top: 80px;" *ngIf="!enProceso">
+		<md-progress-circle	
+			style="position: absolute;"				
+		    [color]="'accent'"
+		    [mode]="'determinate'"
+		    [value]="40">
+		</md-progress-circle>								
+		<div style="position: absolute;" fxLayout="column" fxLayoutAlign="center center">
+			<span>40%</span>
+			<span>Ver mas</span>
+		</div>		
+	</div>-->
+	<!-- porcentage -->
+
+	<br><br><br><br>
+</div>

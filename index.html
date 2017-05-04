@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <base href="./"> 
+    <title>DIAN Framework</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="node_modules/@dian-cmp/estilos/styles.css">
+
+		<!-- Estilos para Implementación de Roaming -->
+    <link href="/WebFirmadigital/scripts/thickbox/thickbox.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="/WebFirmadigital/estilos/jquery.loader.css" rel="stylesheet" type="text/css"/>
+   
+    <!-- 1. Load libraries -->
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/hammerjs/hammer.js"></script>
+    <script src="node_modules/typescript/lib/typescript.js"></script>
+
+    <!-- others libs -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script src="node_modules/file-saver/FileSaver.min.js"></script>
+    
+    <!-- Scripts para Implementación de Roaming -->
+    <!-- script type="text/javascript" src="/WebFirmadigital/scripts/jquery/jquery.js"></script-->
+    <!--<script type="text/javascript" src="/WebFirmadigital/scripts/jquery.loader.js"></script>-->
+    <script type="text/javascript" src="/WebFirmadigital/scripts/thickbox/thickbox.js"></script>
+    <script type="text/javascript" src="/WebFirmadigital/firma/firmaRoaming/apiVentanaFirmaWeb.js"></script>
+    <script type="text/javascript" src="/WebFirmadigital/firma/firmaRoaming/apiFirmaDigitalWeb.js"></script>
+    <script type="text/javascript" src="node_modules/@dian/api-firma/src/integracion/AdmFirmaDigital.js"></script>
+    
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>    
+    <script>
+      System
+        .import('app')
+        .catch(function(err) { 
+            console.error(err); 
+        });
+    </script>    
+  </head>
+  <!-- 3. Display the application -->
+  <body style="margin: 0px;">
+    <app-root>
+      <style type="text/css">
+        #TB_overlay{z-index: 1050;} #TB_window{z-index: 1050;}
+
+        #pre-bootstrap {
+          background-color: #262626 ;
+          bottom: 0px ;
+          left: 0px;
+          position: fixed ;
+          right: 0px ;
+          top: 0px ;
+          z-index: 999999 ;
+        }
+         
+        #pre-bootstrap div.messaging {
+          color: #FFFFFF ;
+          left: 0px ;
+          margin-top: -37px ;
+          position: absolute ;
+          right: 0px ;
+          text-align: center ;
+          top: 50% ;
+        }
+         
+        #pre-bootstrap h1 {
+          font-size: 26px ;
+          line-height: 35px ;
+          margin: 0px 0px 20px 0px ;
+        }
+         
+        #pre-bootstrap p {
+          font-size: 18px ;
+          line-height: 14px ;
+          margin: 0px 0px 0px 0px ;
+        }
+      </style>
+       
+      <div id="pre-bootstrap">
+        <div class="messaging">      
+          <img style="width: 200px;" class="logo-animation" src="node_modules/@dian-cmp/estilos/assets/images/png/logoDianAltaResolucionWeb.png">
+          <br><br>     
+          <p>Espere mientras se carga la aplicaci&oacute;n...</p>       
+        </div>
+      </div>
+    </app-root>          
+  </body>
+</html>
